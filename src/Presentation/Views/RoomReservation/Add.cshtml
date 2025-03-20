@@ -1,0 +1,32 @@
+@model RoomRes.Presentation.ViewModels.RoomReservationAddViewModel
+
+@{
+    ViewBag.Title = "Add room reservation";
+}
+
+<h2>Add room reservation</h2>
+
+<form asp-asp-controller="RoomReservation" asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="RoomReservation.RoomId">Room Id:</label>
+        <input asp-for="RoomReservation.RoomId" required />
+        <span asp-validation-for="RoomReservation.RoomId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoomReservation.StartingTime">Starting Time:</label>
+        <input asp-for="RoomReservation.StartingTime" type="datetime-local" class="form-control" required />
+        <span asp-validation-for="RoomReservation.StartingTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoomReservation.Duration">Duration (HH:mm):</label>
+        <input asp-for="RoomReservation.Duration" type="time" class="form-control" required />
+        <span asp-validation-for="RoomReservation.Duration" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+}

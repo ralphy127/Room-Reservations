@@ -1,0 +1,26 @@
+@model RoomRes.Presentation.ViewModels.RoomListViewModel
+
+@{
+    ViewBag.Title = "Room List";
+}
+
+<h2>Room List:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Capacity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model?.Rooms is not null) {
+            @foreach(Room room in Model.Rooms) {
+                <tr>
+                    <td>@room.Id</td>
+                    <td>@room.Capacity</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

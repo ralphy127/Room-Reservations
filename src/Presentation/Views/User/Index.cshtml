@@ -1,0 +1,50 @@
+@model RoomRes.Presentation.ViewModels.RoomReservationListViewModel
+
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewBag.Title = "User panel";
+}
+
+<h2>Users panel</h2>
+
+<a class="nav-item nav-link" asp-controller="Room" asp-action="Index">Rooms</a><br>
+
+<h2>My Reservations</h2>
+
+@if (Model?.RoomReservations is not null && Model.RoomReservations.Any()) {
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Room ID</th>
+                <th>Start Time</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (RoomReservation roomReservation in Model.RoomReservations) {
+                <tr>
+                    <td>@roomReservation.RoomId</td>
+                    <td>@roomReservation.StartingTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@roomReservation.Duration</td>
+                    <td>
+                        <form asp-controller="RoomReservation" asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="roomReservationId" value="@roomReservation.Id" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} else {
+    <p>No reservations found.</p>
+}
+
+<a class="btn btn-primary" asp-controller="RoomReservation" asp-action="Add">Add new reservation</a><br>
+
+@if (ViewData["ErrorMessage"] is not null)
+{
+    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+}

@@ -1,0 +1,33 @@
+@{
+    ViewBag.Title = "Room manager";
+}
+
+<h2>Room manager</h2>
+
+<a class="btn btn-primary" asp-controller="Room" asp-action="Add">Add new room</a><br>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Capacity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Room room in Model) {
+            <tr>
+                <td>@room.Id</td>
+                <td>@room.Capacity</td>
+                <td>
+                    <a asp-controller="Room" asp-action="Update" asp-route-roomId="@room.Id" class="btn btn-primary">Edit</a>
+                    <form asp-controller="Room" asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="roomId" value="@room.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

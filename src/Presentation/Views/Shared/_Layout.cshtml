@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">Room Reservation System</a><br>
+        <div class="navbar-nav">
+            @if (Context.Session.GetString("userId") is not null) {
+                @if (Context.Session.GetString("userId") == "1") {
+                    <a class="nav-item nav-link" asp-controller="Admin" asp-action="Index">Admin panel</a>
+                }
+                else {
+                    <a class="nav-item nav-link" asp-controller="User" asp-action="Index">User panel</a>
+                }
+
+                <form asp-action="Logout" asp-controller="User" method="post">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form><br>
+            } else {
+                <a class="nav-item nav-link" asp-controller="User" asp-action="Login">Login</a>
+                <a class="nav-item nav-link" asp-controller="User" asp-action="Register">Register</a><br><br>
+            }
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

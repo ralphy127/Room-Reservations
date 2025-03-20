@@ -1,0 +1,39 @@
+@{
+    ViewBag.Title = "Room reservation manager";
+}
+
+<h2>Room reservation manager</h2>
+
+<a class="btn btn-primary" asp-controller="RoomReservation" asp-action="Add">Add new reservation</a><br>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Room ID</th>
+            <th>User ID</th>
+            <th>Validated</th>
+            <th>Starting</th>
+            <th>Duration</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(RoomReservation roomReservation in Model) {
+            <tr>
+                <td>@roomReservation.Id</td>
+                <td>@roomReservation.RoomId</td>
+                <td>@roomReservation.UserId</td>
+                <td>@roomReservation.ValidationTime</td>
+                <td>@roomReservation.StartingTime</td>
+                <td>@roomReservation.Duration</td>
+                <td>
+                    <form asp-controller="RoomReservation" asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="roomReservationId" value="@roomReservation.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

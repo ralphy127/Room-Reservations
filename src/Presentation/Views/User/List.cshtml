@@ -1,0 +1,31 @@
+@model RoomRes.Presentation.ViewModels.UserListViewModel
+
+@{
+    ViewBag.Title = "User list";
+}
+
+<h2>User list</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model?.Users is not null) {
+            @foreach(User user in Model.Users) {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Username</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@if (ViewData["ErrorMessage"] is not null)
+{
+    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+}

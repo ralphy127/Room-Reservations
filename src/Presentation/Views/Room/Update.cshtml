@@ -1,0 +1,26 @@
+@model RoomRes.Presentation.ViewModels.RoomAddViewModel
+
+@{
+    ViewBag.Title = "Update room";
+}
+
+<h2>Edit room</h2>
+
+<h3>Chosen Id: @Model.Room.Id</h3>
+
+<form asp-controller="Room" asp-action="Update" method="post">
+    <input type="hidden" asp-for="Room.Id" />
+
+    <div class="form-group">
+        <label asp-for="Room.Capacity">Capacity:</label>
+        <input asp-for="Room.Capacity" required />
+        <span asp-validation-for="Room.Capacity" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+@if (ViewData["ErrorMessage"] is not null)
+{
+    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+}

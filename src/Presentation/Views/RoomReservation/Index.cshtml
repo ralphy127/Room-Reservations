@@ -1,0 +1,34 @@
+@model RoomRes.Presentation.ViewModels.RoomReservationListViewModel
+
+@{
+    ViewBag.Title = "Room Reservaion List";
+}
+
+<h2>Room Reservation List:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Room ID</th>
+            <th>User ID</th>
+            <th>Validated</th>
+            <th>Starting</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model?.RoomReservations is not null) {
+            @foreach(RoomReservation roomReservation in Model.RoomReservations) {
+                <tr>
+                    <td>@roomReservation.Id</td>
+                    <td>@roomReservation.RoomId</td>
+                    <td>@roomReservation.UserId</td>
+                    <td>@roomReservation.ValidationTime</td>
+                    <td>@roomReservation.StartingTime</td>
+                    <td>@roomReservation.Duration</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login in</h2>
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@if (ViewData["ErrorMessage"] is not null)
+{
+    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+}

@@ -1,0 +1,20 @@
+@{
+    ViewBag.Title = "Admin panel";
+}
+<a class="nav-item nav-link" asp-controller="Room" asp-action="Index">Rooms</a><br>
+<a class="nav-item nav-link" asp-controller="RoomReservation" asp-action="Index">Room reservations</a><br>
+<a class="nav-item nav-link" asp-controller="User" asp-action="List">Users</a>
+
+<h2>Admin panel</h2>
+
+<div class="list-group">
+    <a asp-controller="Admin" asp-action="ManageRooms" class="list-group-item list-group-item-action">
+        Manage rooms
+    </a><br>
+    <a asp-controller="Admin" asp-action="ManageRoomReservations" class="list-group-item list-group-item-action">
+        Manage rooms reservations
+    </a><br>
+    <a asp-controller="Admin" asp-action="ManageUsers" class="list-group-item list-group-item-action">
+        Manage users
+    </a><br>
+</div>

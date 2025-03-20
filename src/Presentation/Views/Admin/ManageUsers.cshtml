@@ -1,0 +1,29 @@
+@{
+    ViewBag.Title = "User manager";
+}
+
+<h2>User manager</h2>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(User user in Model) {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Username</td>
+                <td>
+                    <form asp-controller="User" asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        } 
+    </tbody>
+</table>
